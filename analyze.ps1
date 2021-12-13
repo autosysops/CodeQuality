@@ -1,2 +1,2 @@
 # Run PSScriptAnalyzer
-Invoke-ScriptAnalyzer -Path '.\src' -Recurse
+Invoke-ScriptAnalyzer -Path '.\src\default' -Recurse
