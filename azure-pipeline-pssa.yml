@@ -9,7 +9,7 @@ steps:
     inputs:
       filePath: 'test.ps1'
       arguments: "-Type advanced -OutputResults"
-      errorActionPreference: 'continue'
+      failOnStderr: false
   - task: PublishTestResults@2
     inputs:
       testResultsFormat: 'NUnit'
