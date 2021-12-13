@@ -9,7 +9,9 @@ steps:
     inputs:
       filePath: 'test.ps1'
       arguments: "-Type advanced -OutputResults"
+      pwsh: true
       failOnStderr: false
+    continueOnError: true
   - task: PublishTestResults@2
     inputs:
       testResultsFormat: 'NUnit'
@@ -17,3 +19,4 @@ steps:
       mergeTestResults: true
       failTaskOnFailedTests: true
       testRunTitle: 'PSScriptAnalyzer tests'
+    condition: in(variables['Agent.JobStatus'], 'Succeeded', 'SucceededWithIssues', 'Failed')
