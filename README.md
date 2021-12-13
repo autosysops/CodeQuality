@@ -1,20 +1,28 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# PSScriptAnalyzer and Pester
+This repo shows how you can use PSScriptAnalyzer and Pester together to generate a test report.
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+## Usage
+If you want to use this locally call the test.ps1 file. Here are the examples to use in this demo:
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+```
+.\test.ps1
+```
+This will call the script in default settings, it will use the simple way of combinding PSScriptAnalyzer and Pester to give you an output in the host.
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+```
+.\test.ps1 -Type advanced
+```
+This will use the more advanced way of combining PSScriptAnalyzer and Pester. It will now show in which files there are issues and what these issues are.
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+```
+.\test.ps1 -Type advanced -TestLocation '.\src\exemptions\'
+```
+This will have the script test the exemptions folder in src instead and will give an succesfull tests due to the excemptions being inserted into the scripts.
+
+```
+.\test.ps1 -Type advanced -OutputResults   
+```
+This will use the more advanced way of combining PSScriptAnalyzer and Pester. It will generate a file called pssa.testresults.xml in the root of this folder. This file can be published in a pipeline to show the testresults.
+
+## Pipeline
+There is a pre-made azure devops pipeline available in the repository. You can take the azure-pipeline-pssa.yml file. It has no predefined trigger as the intended use case would be to use it as build validation for a certain branch.
