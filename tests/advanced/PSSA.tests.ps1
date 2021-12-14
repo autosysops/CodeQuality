@@ -21,7 +21,7 @@ foreach ($Severity in $Severities) {
             param ($RuleName)
 
             #Test all scripts for the given rule and if there is a problem display this problem in a nice an reabable format in the debug message and let the test fail
-            $Paths  | ForEach-Object { Invoke-ScriptAnalyzer -Path $TestLocation -IncludeRule $RuleName -Recurse } |
+            Invoke-ScriptAnalyzer -Path $TestLocation -IncludeRule $RuleName -Recurse |
             Foreach-Object {"Problem in $($_.ScriptName) at line $($_.Line) with message: $($_.Message)" } |
                 Should -BeNullOrEmpty
         }
